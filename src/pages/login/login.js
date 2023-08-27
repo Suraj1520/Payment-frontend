@@ -3,17 +3,20 @@ import axios from 'axios';
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import getCookie from "../jwtToken/jwtToken";
+import Loader from '../loader/loader';
 
 const Login = () => {
-
+    
     const token = getCookie('jwt');
-
+    
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',
         password: '',
         rememberMe: false
     });
+    
+    const [loading,setLoading]= useState(false);
 
     const handleChange = (event) => {
         const { name, value, type, checked } = event.target;
@@ -39,6 +42,7 @@ const Login = () => {
 
     };
 
+
     const navigatetoURL = async () => {
         try {
             const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/getUser`, {
@@ -47,7 +51,7 @@ const Login = () => {
                     'Authorization': `Bearer ${token}` // Add your JWT token here
                 }
             })
-            console.log(response);
+            // console.log(response);
             if (response && response.data && response.data && response.data.isActive) {
                 navigate("/myplan");
             }
@@ -57,10 +61,12 @@ const Login = () => {
             console.log(err);
         }
     }
+    
     const addUser = async () => {
-
+        
+        setLoading(true);
         try {
-            const response = await fetch(`${REACT_APP_BASE_URL}/users/login`, {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/users/login`, {
                 method: "POST",
                 withCredentials: true, // This enables sending cookies and other credentials
                 headers: {
@@ -72,7 +78,7 @@ const Login = () => {
                 }),
             })
             const data = await response.json();
-            console.log(data);
+            // console.log(data);
             if (data && data.message === "Authentication Successfull") {
                 const token = data.token;
                 setCookie('jwt', token, 1);
@@ -89,6 +95,7 @@ const Login = () => {
         catch (err) {
             console.log(err);
         }
+        setLoading(false);
     };
 
 
@@ -117,7 +124,9 @@ const Login = () => {
                         </div>
                     </div>
                     <div className="button">
+                        {!loading ?
                         <button className="signup-button">Login</button>
+                        :<Loader />}
                     </div>
                 </div>
                 <div className="footer">New to MyApp?&nbsp;<a href="/" style={{ textDecoration: 'none' }}><div className="link">Sign Up</div></a></div>

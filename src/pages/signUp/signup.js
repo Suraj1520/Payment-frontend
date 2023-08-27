@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "./signup.css";
 import axios from 'axios';
-import {useNavigate}from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import getCookie from "../jwtToken/jwtToken";
+import Loader from '../loader/loader';
 
 const SignUp = () => {
-    
-    const token =  getCookie('jwt');
+
+    const token = getCookie('jwt');
 
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -16,10 +17,12 @@ const SignUp = () => {
         rememberMe: false
     });
 
+    const [loading, setLoading] = useState("false");
+
     const handleChange = (event) => {
         const { name, value, type, checked } = event.target;
         const newValue = type === 'checkbox' ? checked : value;
-        
+
         setFormData({
             ...formData,
             [name]: newValue
@@ -28,36 +31,36 @@ const SignUp = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setLoading(true);
         addUser();
     };
 
-    const addUser = async () =>{
-        let config = {
-            method:"post",
-            url:`${process.env.REACT_APP_BASE_URL}/users/signUp`,
-            data:{
-                name:formData.name,
-                emailId:formData.email,
-                password:formData.password,
-            },
-        };
+    const addUser = async () => {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/users/signUp`,{
+                method:"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    emailId: formData.email,
+                    password: formData.password,
+                }),
+            })
 
-        try{
-            const response = await axios(config);
-            console.log(response);
-            if(response.data && response.data.message==="User registered Successfully!")
+            if (response && response.status === 402) alert("Something went wrong");
+            else if(response && response.status===400)
             {
+                alert("User already exist, Go to login page!");
                 navigate("/login");
             }
-            else if(response.status===401 && response.data && response.data.message==="User already exist")
-            {
-                alert("User Already Exist, Please login!");
-                navigate("/login");
-            }
+            else navigate("/login");
         }
-        catch(err){
+        catch (err) {
             console.log(err);
         }
+        setLoading(false);
     };
 
     return (
@@ -88,10 +91,11 @@ const SignUp = () => {
                         </div>
                     </div>
                     <div className="button">
-                        <button className="signup-button" type="submit">Sign Up</button>
+                        {loading ? <button className="signup-button" type="submit">Sign Up</button>
+                            : <Loader />}
                     </div>
                 </div>
-                <div className="footer">Already have an account?&nbsp;<a href="/login" style={{textDecoration:'none'}}><div className="link">Login</div></a></div>
+                <div className="footer">Already have an account?&nbsp;<a href="/login" style={{ textDecoration: 'none' }}><div className="link">Login</div></a></div>
             </form>
         </div>
     );

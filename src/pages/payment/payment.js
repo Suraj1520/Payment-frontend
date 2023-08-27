@@ -12,7 +12,6 @@ import { Elements } from '@stripe/react-stripe-js';
 const Payment = () => {
 
     const navigate = useNavigate();
-
     const token = getCookie('jwt');
     if (!token) navigate("/login");
 
@@ -20,6 +19,7 @@ const Payment = () => {
     const { state } = useLocation();
 
     const data = state;
+    
     // if (!data || data.length === 0 ) {
     //     navigate("/pricing");
     //     // return null;

@@ -4,6 +4,7 @@ import './payment.css';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { loadStripe } from '@stripe/stripe-js';
+import Loader from '../loader/loader';
 import getCookie from "../jwtToken/jwtToken";
 import { CardElement, useStripe, useElements, Elements } from '@stripe/react-stripe-js';
 
@@ -17,10 +18,11 @@ const Form = (props) => {
     const elements = useElements();
 
     const data = props.data;
+    const [loading,setLoading]= useState(false);
 
     const pay = async (e) => {
         e.preventDefault();
-
+        setLoading(true);
         if (!stripe || !elements) {
             // Stripe.js has not loaded yet.
             return;
@@ -43,6 +45,7 @@ const Form = (props) => {
                 if (response && response.data.message === "Successfully saved") {
                     navigate("/myplan");
                 }
+                setLoading(false);
             }
             catch (error) {
                 // Handle errors
@@ -59,7 +62,8 @@ const Form = (props) => {
             <form onSubmit={pay}>
                 <CardElement className="StripeElement" options={{ style: { base: { fontSize: '12px' } } }} />
                 <div className="confirm">
-                    <button type="submit">Confirm Payment</button>
+                    {!loading ?<button type="submit">Confirm Payment</button>
+                    :<div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}><Loader  /></div>}
                 </div>
             </form>
         </div>

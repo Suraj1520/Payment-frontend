@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import './pricing.css';
 import getCookie from "../jwtToken/jwtToken";
 import { useNavigate } from "react-router-dom";
+import Loader from '../loader/loader';
 
 const Pricing = () => {
     const navigate = useNavigate();
-    
+
     const token = getCookie('jwt');
-    if(token===null)navigate("/login");
-    
+    if (token === null) navigate("/login");
+
     const [activePlan, setActivePlan] = useState(null);
     const [period, setPeriod] = useState("monthly");
+    const [loading, setLoading] = useState(false);
 
     const billingCycle = ["Phone", "Basic", "Standard", "Premium"];
     const price = {
@@ -53,8 +55,9 @@ const Pricing = () => {
     }
 
     const handleNext = () => {
-        if (activePlan==null) alert("Select a plan first!");
+        if (activePlan == null) alert("Select a plan first!");
         else {
+            setLoading(true);
             const data = {
                 planName: "",
                 billingCycle: "",
@@ -65,8 +68,9 @@ const Pricing = () => {
             data.billingCycle = period;
             data.planPrice = price[period].params[activePlan];
             data.planDevice = device[activePlan];
-            
+
             navigate("/payment", { state: data });
+            setLoading(false);
         }
     }
 
@@ -145,7 +149,7 @@ const Pricing = () => {
                     </div>
                 </div>
                 <div className="next1" >
-                    <div className="next" onClick={() => handleNext()}>Next</div>
+                    <div className="next" onClick={() => handleNext()}>{!loading?'Next':<Loader />}</div>
                 </div>
             </div>
         </div >
