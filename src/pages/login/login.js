@@ -60,7 +60,7 @@ const Login = () => {
     const addUser = async () => {
 
         try {
-            const response = await fetch('http://localhost:8000/users/login', {
+            const response = await fetch(`${REACT_APP_BASE_URL}/users/login`, {
                 method: "POST",
                 withCredentials: true, // This enables sending cookies and other credentials
                 headers: {
