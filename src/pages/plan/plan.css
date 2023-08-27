@@ -1,0 +1,101 @@
+.plan-details{
+    background-color: white;
+    border-radius: 10px;
+    min-width: 450px;
+    min-height: 250px;
+}
+.plan-details .heading{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px;
+    margin-bottom:10px;
+}
+.plan-details .heading .subheading{
+    display: flex;
+    
+}
+.plan-details .heading .subheading .subheading1{
+    font-weight: 600;
+}
+.plan-details .heading .subheading .state{
+    margin-left: 10px;
+    background-color: #c4ddfd;
+    border-radius: 5px;
+    padding-left:5px;
+    padding-right:5px;
+    font-size: small;
+    color: #3066af;
+    font-weight: bold;
+}
+.state1{
+    margin-left: 10px;
+    background-color: #fbf0f0;
+    border-radius: 5px;
+    padding-left:5px;
+    padding-right:5px;
+    font-size: small;
+    color: #e36b67;
+    font-weight: bold;
+}
+.cancel{
+    font-size: small;
+    font-weight: 600;
+    color:#255194;
+    cursor:pointer;
+}
+.plan-name{
+    display: flex;
+    margin-left: 20px;
+}
+.plan-type{
+    display: flex;
+    margin-left: 20px;
+    font-size: small;
+    color: #a6a6a7;
+}
+.plan-cost{
+    display: flex;
+    align-items: center;
+    margin-left:20px;
+    font-size: xx-large;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.plan-cost .plan-cost-cycle{
+    font-size:x-large;
+    font-weight: 400;
+}
+.change{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    height: 30px;
+    border: 2px solid #466ca4;
+    border-radius: 5px;
+    color: #466ca4;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    width: max-content;
+    font-size: small;
+    font-weight: 600;
+    padding-left:15px;
+    padding-right: 15px;
+    cursor: pointer;
+    
+}
+.message{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    margin: 20px 20px;
+    background-color: #e9e9e9;
+    border-radius: 5px;
+    padding:5px;
+    font-size: small;
+    font-weight: 500;
+    max-width: 400px;
+    /* min-width: fit-content; */
+}

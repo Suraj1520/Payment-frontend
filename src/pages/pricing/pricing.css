@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+.pricing-container {
+    background-color: white;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+}
+
+.pricing-container1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    max-width: 800px;
+    padding: 20px;
+    margin: 0 auto;
+    /* width: auto; */
+}
+
+.next1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #1f4d91;
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: small;
+    cursor: pointer;
+}
+
+.right-plan {
+    font-size: x-large;
+    font-weight: 700;
+    font-family: sans-serif;
+    margin: 30px;
+}
+
+.values {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: fit-content;
+}
+
+.type {
+    display: flex;
+    justify-content: space-between;
+    min-width: 35rem;
+    align-items: center;
+}
+
+.type1 {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    /* align-items: center; */
+    min-height: 50px;
+    padding: 10px 0;
+}
+
+.type2 {
+    display: flex;
+    flex: 1 1;
+    justify-content: center;
+    min-height: 4rem;
+    font-size: x-small;
+    font-weight: 500;
+    color: white;
+    min-width: 4rem;
+    align-items: center;
+    background-color: #7994bc;
+    cursor: pointer;
+}
+.type2:hover {
+    background-color: #1f4d91; /* Change background color on hover */
+}
+.type2:hover + .square {
+    border-top-color:  #1f4d91; /* Change background color on hover */
+}
+.type2:hover + .type6{
+    color:#1f4d91;
+}
+
+.type3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    min-width: 8rem;
+    background-color: #1f4d91;
+    border-radius: 25px;
+}
+
+.type4 {
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    width: 50px;
+    margin: 0px 3px;
+    font-size: x-small;
+    /* background-color: aliceblue; */
+    cursor: pointer;
+}
+
+.second-type {
+    display: flex;
+    justify-content: space-between;
+    min-width: 35rem;
+    align-items: center;
+    color: slategrey;
+    font-weight: 500;
+    font-family: 'Poppins';
+    /* font-size: 22px; */
+    padding: 8px 0px;
+    border-bottom: 1px solid #dededf;
+}
+
+.type5 {
+    font-size: smaller;
+}
+
+.second-type .type1 {
+    padding: 0px;
+    min-height: 0px;
+    height: 20px;
+}
+
+.type6 {
+    display: flex;
+    flex: 1 1;
+    justify-content: center;
+    font-size: x-small;
+    font-weight: 500;
+    min-width: 4rem;
+    align-items: center;
+}
+.type6.active{
+    color:#1f4d91;
+    font-weight: 700;
+}
+.type7{
+    display: flex;
+    flex: 1 1;
+    justify-content: center;
+    min-width: 4rem;
+    align-items: center;
+    margin:15px 0px
+}
+.type10{
+    font-size: x-small;
+}
+.type10.active{
+    color:#1f4d91;
+    /* font-weight: 900; */
+    font-weight: bold;
+}
+.type8{
+    display: flex;
+    gap: 20px;
+    justify-content: start;
+    align-items: start;
+}
+.type9{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 4.1rem;
+    min-width: 4.1rem;
+}
+.type2.active {
+    background-color: #1f4d91; 
+}
+.type2.active + .square{
+    border-top-color:  #1f4d91;
+}
+.square{
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    min-width: 0rem;
+    min-height: 0rem;
+    max-width: 0rem;
+    max-height: 0rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+    border-top: 0.5rem solid #f9f9f9; 
+}
+.border{
+    border-bottom: none;
+    align-items:start ;
+}
